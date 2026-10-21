@@ -12,7 +12,7 @@
  *   npm run benchmark:compressor
  *
  * Results are printed to stdout and the baseline table is written
- * (or updated) in docs/PERFORMANCE.md.
+ * (or updated) in docs/performance-tuning-guide.md (Section 7 — Benchmark Data).
  */
 
 "use strict";
@@ -131,7 +131,7 @@ describe("#882 — batchCompressor benchmarks (compression ratio + round-trip ti
     expect(r.decompressMs).toBeLessThan(5);
   });
 
-  // ── Print human-readable table + write PERFORMANCE.md ────────────────────
+  // ── Print human-readable table + write performance-tuning-guide.md ────────
 
   afterAll(() => {
     if (!results) return;
@@ -166,8 +166,8 @@ describe("#882 — batchCompressor benchmarks (compression ratio + round-trip ti
     console.log("  " + sep);
     console.log(`  (averaged over ${RUNS} iterations · Node ${process.version})\n`);
 
-    // Write to docs/PERFORMANCE.md
-    const perfPath = path.join(__dirname, "..", "docs", "PERFORMANCE.md");
+    // Write to docs/performance-tuning-guide.md (section 7)
+    const perfPath = path.join(__dirname, "..", "docs", "performance-tuning-guide.md");
     const date     = new Date().toISOString().slice(0, 10);
 
     const tableLines = [
@@ -195,6 +195,6 @@ ${tableLines.join("\n")}
       : existing + newSection;
 
     fs.writeFileSync(perfPath, updated, "utf8");
-    console.log(`  Baseline written to docs/PERFORMANCE.md`);
+    console.log(`  Baseline written to docs/performance-tuning-guide.md`);
   });
 });
